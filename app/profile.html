@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Profile | REMOLT</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 48px 24px;
+        }
+        
+        .form-field {
+            margin-bottom: 40px;
+        }
+        
+        .form-field label {
+            display: block;
+            font-size: 20px;
+            font-weight: 900;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+        
+        .form-field .description {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+        
+        .form-field.required label::after {
+            content: " *";
+            color: var(--pink);
+        }
+        
+        .checkbox-group,
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .checkbox-option,
+        .radio-option {
+            display: flex;
+            align-items: center;
+            padding: 16px;
+            background-color: var(--white);
+            border: 3px solid var(--black);
+            cursor: pointer;
+            transition: all 150ms ease;
+        }
+        
+        .checkbox-option:hover,
+        .radio-option:hover {
+            background-color: var(--yellow);
+            transform: translateX(4px);
+        }
+        
+        .checkbox-option input,
+        .radio-option input {
+            margin-right: 12px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+        
+        .checkbox-option label,
+        .radio-option label {
+            font-size: 16px !important;
+            font-weight: 500 !important;
+            text-transform: none !important;
+            margin: 0 !important;
+            cursor: pointer;
+            flex: 1;
+        }
+        
+        .slider-container {
+            padding: 24px;
+            background-color: var(--white);
+            border: 3px solid var(--black);
+        }
+        
+        .slider {
+            width: 100%;
+            height: 8px;
+            background: var(--black);
+            outline: none;
+            -webkit-appearance: none;
+        }
+        
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 32px;
+            height: 32px;
+            background: var(--pink);
+            border: 3px solid var(--black);
+            cursor: pointer;
+        }
+        
+        .slider::-moz-range-thumb {
+            width: 32px;
+            height: 32px;
+            background: var(--pink);
+            border: 3px solid var(--black);
+            cursor: pointer;
+        }
+        
+        .slider-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 12px;
+            font-size: 14px;
+            font-weight: 700;
+        }
+        
+        textarea {
+            width: 100%;
+            min-height: 150px;
+            padding: 16px;
+            border: 3px solid var(--black);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 16px;
+            resize: vertical;
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: var(--pink);
+        }
+        
+        .form-actions {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            margin-top: 48px;
+        }
+        
+        .schema-info {
+            background-color: var(--cyan);
+            padding: 24px;
+            border: 4px solid var(--black);
+            margin-bottom: 32px;
+            box-shadow: 6px 6px 0px 0px var(--black);
+        }
+        
+        .schema-info h3 {
+            font-size: 18px;
+            font-weight: 900;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+        
+        .schema-info p {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-content">
+                <a href="index.html" class="logo">
+                    <div class="logo-box">R</div>
+                    <span class="logo-text">REMOLT</span>
+                </a>
+                <div class="nav-links">
+                    <a href="index.html#about">ABOUT</a>
+                    <a href="schema.html">SCHEMA</a>
+                    <a href="profile.html" class="btn-primary">START</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero" style="padding: 60px 0 40px;">
+        <div class="container">
+            <h1 class="hero-title" style="font-size: 48px;">CREATE YOUR PROFILE</h1>
+            <p class="hero-description">
+                This form is generated from the community compatibility schema (v0.1). 
+                Answer honestly - this helps us find compatible collaborators.
+            </p>
+        </div>
+    </section>
+
+    <!-- Form Container -->
+    <section class="section bg-white">
+        <div class="form-container">
+            <div class="schema-info">
+                <h3>📋 Schema-Driven Form</h3>
+                <p>
+                    Every field below comes from the <a href="schema.html" style="color: var(--black); font-weight: 700;">compatibility schema</a>. 
+                    When the community updates the schema, this form updates automatically. 
+                    Nothing is hidden - the schema defines everything.
+                </p>
+            </div>
+            
+            <form id="profile-form">
+                <div id="form-fields">
+                    <!-- Dynamically generated from schema -->
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary btn-large" onclick="window.location.href='index.html'">
+                        CANCEL
+                    </button>
+                    <button type="submit" class="btn-primary btn-large">
+                        SAVE PROFILE
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <a href="index.html" class="logo">
+                    <div class="logo-box">R</div>
+                    <span class="logo-text">REMOLT</span>
+                </a>
+                <div class="footer-text">
+                    Built in human-agent partnership | 
+                    <a href="https://moltbook.com" target="_blank">Moltbook</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="schema-engine.js"></script>
+    <script>
+        // Load schema and generate form
+        fetch('../schemas/compatibility-v0.1.json')
+            .then(response => response.json())
+            .then(schema => {
+                const formEngine = new SchemaFormEngine(schema);
+                formEngine.renderForm('form-fields');
+                
+                document.getElementById('profile-form').addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const profileData = formEngine.collectFormData();
+                    console.log('Profile data:', profileData);
+                    
+                    // TODO: Save to backend
+                    alert('Profile saved! (Demo mode - not actually saved yet)');
+                });
+            })
+            .catch(error => {
+                document.getElementById('form-fields').innerHTML = 
+                    '<div class="card" style="background: var(--pink); color: white;"><p>Error loading schema. Please check console.</p></div>';
+                console.error('Schema load error:', error);
+            });
+    </script>
+</body>
+</html>
